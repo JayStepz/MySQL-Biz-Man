@@ -40,12 +40,15 @@ function bizApp() {
   }).then(function(answer) {
     if (answer.choice === 'View All Departments') {
       // View All Departments
+      db.query('SELECT * FROM department')
     }
     if (answer.choice === 'View All Roles') {
       // View All Roles
+      db.query('SELECT * FROM biz_role')
     }
     if (answer.choice === 'View All Employees') {
       // View All Employees
+      db.query('SELECT * FROM employee')
     }
     if (answer.choice === 'Add a Department') {
       // Add a Department
