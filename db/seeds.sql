@@ -16,7 +16,7 @@ VALUES
     (7, "Legal Team Lead", 250000, 4),
     (8, "Lawyer", 190000, 4)
 
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+INSERT INTO employee (id, first_name, last_name, manager_id)
 VALUES 
     (1, "John", "Doe", NULL),
     (2, "Mike", "Chan", "John Doe"),
