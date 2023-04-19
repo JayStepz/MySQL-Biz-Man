@@ -5,10 +5,10 @@ const cTable = require('console.table');
 // Connect to database
 const db = mysql.createConnection(
   {
-    host: '',
+    host: 'localhost',
     user: '',
     password: '',
-    database: ''
+    database: 'biz_db'
   }
 );
 
@@ -40,17 +40,23 @@ function bizApp() {
   }).then(function(answer) {
     if (answer.choice === 'View All Departments') {
       // View All Departments
-      db.query('SELECT * FROM department')
+      db.query('SELECT * FROM department', function(err, results) {
+        console.table(results);
+      });
     }
-    if (answer.choice === 'View All Roles') {
+    else if (answer.choice === 'View All Roles') {
       // View All Roles
-      db.query('SELECT * FROM biz_role')
+      db.query('SELECT * FROM biz_role', function(err, results) {
+        console.table(results);
+      });
     }
-    if (answer.choice === 'View All Employees') {
+    else if (answer.choice === 'View All Employees') {
       // View All Employees
-      db.query('SELECT * FROM employee')
+      db.query('SELECT * FROM employee', function(err, results) {
+        console.table(results);
+      });
     }
-    if (answer.choice === 'Add a Department') {
+    else if (answer.choice === 'Add a Department') {
       // Add a Department
       inquirer.prompt([
         {
@@ -59,10 +65,10 @@ function bizApp() {
           message: 'Enter new department name.'
         }
       ]).then(function(answer) {
-        db.query('INSERT INTO department', {dept_name: answer.newDept})
-      })
+        db.query('INSERT INTO department VALUES ?', {dept_name: answer.newDept})
+      });
     }
-    if (answer.choice === 'Add a Role') {
+    else if (answer.choice === 'Add a Role') {
       // Add a Role
       inquirer.prompt([
         {
@@ -71,10 +77,10 @@ function bizApp() {
           message: 'Enter new employee role.'
         }
       ]).then(function(answer) {
-        db.query('INSERT INTO biz_role', {title: answer.newRole})
-      })
+        db.query('INSERT INTO biz_role VALUES ?', {title: answer.newRole})
+      });
     }
-    if (answer.choice === 'Add an Employee') {
+    else if (answer.choice === 'Add an Employee') {
       // Add an Employee
       inquirer.prompt([
         {
@@ -91,7 +97,7 @@ function bizApp() {
         db.query('INSERT INTO employee', {first_name: answer.newFirstName}, {last_name: answer.newLastName})
       })
     }
-    if (answer.choice === 'Update Employee Role') {
+    else (answer.choice === 'Update Employee Role') {
       // Update Employee Role
       inquirer.prompt([
         {
@@ -99,7 +105,7 @@ function bizApp() {
           name: 'upRole',
           message: 'Which employee is changing roles?',
           choices: [
-            
+
           ]
         }
       ])

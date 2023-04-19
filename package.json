@@ -1,5 +1,5 @@
 {
-    "name": "MySQL-Biz-Man",
+    "name": "main",
     "version": "1.0.0",
     "main": "server.js",
     "scripts": {
